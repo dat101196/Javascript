@@ -137,7 +137,7 @@ var ships = [
 // myFunction(myCallback);
 
 Array.prototype.forEach2 = function(callback){
-    let arrLength = this.length;
+    var arrLength = this.length;
     for (var i = 0; i < arrLength; i++){
         callback(this[i],i);
     }
@@ -148,7 +148,7 @@ ships.forEach2(function(cour, i){
 })
 
 Array.prototype.find2 = function (callback) {
-    let arrLength = this.length;
+    var arrLength = this.length;
     for (var i = 0; i < arrLength; i++){
        if(callback(this[i],i)){
         return this[i];
@@ -165,8 +165,8 @@ console.log("Test create find2 - Courier: ", courier);
 
 
 Array.prototype.filter2 = function (callback) {
-    let arrayOutput = [];
-    let arrLength = this.length;
+    var arrayOutput = [];
+    var arrLength = this.length;
     for (var i = 0; i < arrLength; i++){
        if(callback(this[i],i)){
         arrayOutput.push(this[i]);
@@ -182,8 +182,8 @@ var couriers = ships.filter2(function (cour, index) {
 console.log("Test create filter2 - couriers: ", couriers);
 
 Array.prototype.reduce2 = function (callback, initVal = null) {
-    let arrLength = this.length;
-    let outputVal = initVal;
+    var arrLength = this.length;
+    var outputVal = initVal;
     if(outputVal == null){
         outputVal = this[0];
     }

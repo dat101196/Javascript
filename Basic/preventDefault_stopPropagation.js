@@ -1,11 +1,11 @@
-let listLi = document.querySelectorAll('li');
+var listLi = document.querySelectorAll('li');
 console.log(listLi);
 // for (var i = 0; i <listLi.length; i++) {
-//     let li = listLi[i];
+//     var li = listLi[i];
 //     console.log(li);
 // }
 
-for (let li of listLi) {
+for (var li of listLi) {
     // li.onmousedown = function(e){
     //     e.preventDefault();
     // }
@@ -15,7 +15,7 @@ for (let li of listLi) {
     }
 }
 
-let ul = document.querySelector('ul');
+var ul = document.querySelector('ul');
 // ul.onmousedown = function(e){
 //     e.preventDefault();
 // };

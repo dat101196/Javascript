@@ -2,7 +2,7 @@
 //1.Pending: khi chưa resolve hay reject => đang gây ra memory leak
 //2.Fulfilled: khi gọi resolve
 //3.Rejected: khi gọi reject
-let promise = new Promise(
+var promise = new Promise(
     //Executor
     function (resolve, reject) {
         //Cần phải gọi resolve hoặc reject để ko bị memory leak.
@@ -172,8 +172,8 @@ var promise2 = new Promise(function (resolve, reject) {
 });
 
 Promise.all([promise1, promise2]).then(result => {
-    let rs1 = result[0];
-    let rs2 = result[1];
+    var rs1 = result[0];
+    var rs2 = result[1];
     console.log('result 1: ', rs1);
     console.log('result 2: ', rs2);
 }).catch(error => {
