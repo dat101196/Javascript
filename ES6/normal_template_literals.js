@@ -27,3 +27,20 @@ Line 2
 Line 3`
 
 console.log('templateStrLines = ', templateStrLines);
+
+
+//Nesting template
+//Giúp lồng string với toán tử 3 ngôi dễ nhìn hơn
+//Vd:
+
+let a = -5;
+//Cách bình thường
+let classes1 = "header";
+classes1 += isNaN(a) ? "": a >= 0 ? " number-positive" : " number-negative"
+console.log('Normal string => classes =', classes1);
+//Có template string
+const classes2 = `header ${isNaN(a) ? "": a >= 0 ? "number-positive" : "number-negative"}`;
+console.log('Template string => classes =', classes2);
+//Sử dụng nesting template string
+const classes3 = `header ${isNaN(a) ? "" : `number-${a >= 0 ? "positive" : "negative"}`}`
+console.log('Nesting template string => classes =', classes3);
