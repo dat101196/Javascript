@@ -49,7 +49,7 @@
 //*Lưu ý: const chỉ cho phép gán 1 lần với cái biến được khai báo const và thuộc tính bên trong biến const vẫn có thể gán như bình thường
 //Vd:
 
-const a = {ID: 1};
-a.ID = 2;//OK
+const obj = {ID: 1};
+obj.ID = 2;//OK
 //a = {ID:2};//Error
-console.log(a);
+console.log(obj);
