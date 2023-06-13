@@ -171,11 +171,93 @@ var promise2 = new Promise(function (resolve, reject) {
     }, 3000);
 });
 
-Promise.all([promise1, promise2]).then(result => {
-    var rs1 = result[0];
-    var rs2 = result[1];
-    console.log('result 1: ', rs1);
-    console.log('result 2: ', rs2);
-}).catch(error => {
-    console.log(error);
+// Promise.all([promise1, promise2]).then(result => {
+//     var rs1 = result[0];
+//     var rs2 = result[1];
+//     console.log('result 1: ', rs1);
+//     console.log('result 2: ', rs2);
+// }).catch(error => {
+//     console.log(error);
+// });
+
+//Vd: Get data và show lên giao diện
+var users = [
+    { id: 1, name: 'Người bí ẩn' },
+    { id: 2, name: 'Bing' },
+    { id: 3, name: 'Chat GPT' },
+];
+
+var comments = [
+    {
+        id: 1,
+        user_id: 1,
+        content: 'Hôm nay là ngày mấy?'
+    },
+    {
+        id: 2,
+        user_id: 2,
+        content: 'Hôm nay là ngày 13'
+    },
+    {
+        id: 3,
+        user_id: 1,
+        content: 'Tháng mấy?'
+    },
+    {
+        id: 4,
+        user_id: 3,
+        content: 'Tháng 6'
+    },
+    {
+        id: 5,
+        user_id: 1,
+        content: '13/6 năm 2023'
+    },
+    {
+        id: 6,
+        user_id: 2,
+        content: 'Đúng vậy.'
+    },
+];
+
+var getComments = () => new Promise(resolve => {
+    setTimeout(function () {
+        return resolve(comments);
+    }, 1000);
+});
+
+var getUsersByIds = (user_ids) => new Promise(resolve => {
+    setTimeout(function () {
+        var result = users.filter(function (user) {
+            return user_ids.includes(user.id);
+        });
+        resolve(result);
+    }, 1000);
+});
+
+getComments().then((comments) => {
+    console.log(comments);
+    var user_ids = comments.reduce((list_ids, comment) => {
+        if (!list_ids.includes(comment.user_id)) {
+            list_ids.push(comment.user_id);
+        }
+        return list_ids;
+    }, []);
+    console.log(user_ids);
+    return {
+        comments: comments,
+        user_ids: user_ids
+    };
+}).then(data => {
+    console.log('data: ', data);
+    getUsersByIds(data.user_ids)
+        .then(users => {
+            var ul = document.getElementById("comment_list");
+            var list_li = data.comments.map(comment => {
+                var user = users.find(user => user.id === comment.user_id);
+                return `<li>${user.name}: "${comment.content}"</li>`
+            });
+            var html = list_li.join('');
+            ul.innerHTML = html;
+        });
 });

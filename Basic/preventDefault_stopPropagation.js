@@ -1,3 +1,6 @@
+//event.stopPropagation() đùng để ngăn sự kiện click affect to element cha
+//event.preventDefault() dùng để ngăn sự kiện default thực thi 
+
 var listLi = document.querySelectorAll('li');
 console.log(listLi);
 // for (var i = 0; i <listLi.length; i++) {
